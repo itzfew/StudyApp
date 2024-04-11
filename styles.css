@@ -3,7 +3,24 @@
   margin: 0 auto;
   padding: 20px;
 }
+.container1 {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+}
 
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  background-color: blue;
+  color: white;
+  font-weight: bold;
+  padding: 10px;
+  margin-bottom: 10px;
+}
 .card {
   display: flex;
   align-items: center;
