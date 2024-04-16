@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>APK Installer</title>
+</head>
+<body>
+<h1>APK Installer</h1>
+<button id="installBtn">Install APK</button>
+
+<script>
+document.getElementById("installBtn").addEventListener("click", function() {
+  // Replace 'your_apk_url.apk' with the URL of your APK file
+  const apkUrl = 'your_apk_url.apk';
+  
+  // Try to install the APK
+  if ('serviceWorker' in navigator && 'InstallManager' in window) {
+    navigator.serviceWorker.register('sw.js')
+    .then(reg => {
+      reg.installing.addEventListener('statechange', event => {
+        if (event.target.state === 'installed') {
+          if (navigator.serviceWorker.controller) {
+            // Show install prompt
+            window.InstallManager.prompt();
+          }
+        }
+      });
+    });
+  }
+});
+</script>
+
+<!-- Service Worker to handle APK installation -->
+<script>
+self.addEventListener('install', event => {
+  event.waitUntil(self.skipWaiting());
+});
+self.addEventListener('activate', event => {
+  event.waitUntil(self.clients.claim());
+});
+</script>
+
+</body>
+</html>
