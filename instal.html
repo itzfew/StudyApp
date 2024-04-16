@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>APK Installer</title>
+</head>
+<body>
+<h1>APK Installer</h1>
+<button id="installBtn">Install APK</button>
+
+<script>
+document.getElementById("installBtn").addEventListener("click", function() {
+    const apkUrl = 'https://studyapp.pages.dev/base.apk';
+
+    if (confirm("Do you want to install the APK?")) {
+        window.location.href = apkUrl;
+    }
+});
+</script>
+
+</body>
+</html>
