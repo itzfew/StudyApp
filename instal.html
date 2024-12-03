@@ -1,22 +1,112 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>APK Installer</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Downloads</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .app-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin: 20px 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .app-card h2 {
+            color: #333;
+        }
+        .app-card p {
+            color: #555;
+        }
+        .app-card .download-btn {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .app-card .download-btn:hover {
+            background-color: #218838;
+        }
+    </style>
 </head>
 <body>
-<h1>APK Installer</h1>
-<button id="installBtn">Install APK</button>
+
+<div class="container">
+    <h1>Download Our Apps</h1>
+    <div id="apps-list"></div>
+</div>
 
 <script>
-document.getElementById("installBtn").addEventListener("click", function() {
-    const apkUrl = 'https://studyapp.pages.dev/base.apk';
+    // JSON Data for Apps
+    const appsData = [
+        {
+            "title": "App One",
+            "description": "This is a great app that helps with productivity.",
+            "keywords": ["productivity", "tasks", "management"],
+            "apk_link": "https://example.com/app1.apk",
+            "version": "1.0.0"
+        },
+        {
+            "title": "App Two",
+            "description": "An awesome app for tracking your fitness progress.",
+            "keywords": ["fitness", "health", "exercise"],
+            "apk_link": "https://example.com/app2.apk",
+            "version": "1.2.1"
+        },
+        {
+            "title": "App Three",
+            "description": "Learn new skills with this educational app.",
+            "keywords": ["education", "learning", "skills"],
+            "apk_link": "https://example.com/app3.apk",
+            "version": "2.0.0"
+        }
+    ];
 
-    if (confirm("Do you want to install the APK?")) {
-        window.location.href = apkUrl;
+    // Function to display app data
+    function displayApps(apps) {
+        const appList = document.getElementById("apps-list");
+        apps.forEach(app => {
+            const appCard = document.createElement("div");
+            appCard.classList.add("app-card");
+            appCard.innerHTML = `
+                <h2>${app.title}</h2>
+                <p>${app.description}</p>
+                <p><strong>Version:</strong> ${app.version}</p>
+                <p><strong>Keywords:</strong> ${app.keywords.join(", ")}</p>
+                <a href="${app.apk_link}" class="download-btn" target="_blank">Download APK</a>
+            `;
+            appList.appendChild(appCard);
+        });
     }
-});
+
+    // Display apps on page load
+    window.onload = function() {
+        displayApps(appsData);
+    };
 </script>
 
 </body>
